@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import MathFieldv1 from "$lib/MathFieldv1.svelte";
     import MathFieldv2 from "$lib/MathFieldv2.svelte";
 
@@ -8,9 +8,9 @@
 	let mathEle1 = $state();
 
     let prompts2 = $state();
-    let getPromptValue2 = $state();
-    let answer2 = $derived(getPromptValue2('answer'));
-	$inspect(answer2);
+    // let getPromptValue2 = $state();
+    // let answer2 = $derived(getPromptValue2('answer'));
+	// $inspect(answer2);
     $effect(()=>{
         value1 = value1;
         answer1 = mathEle1.getPromptValue('answer');
