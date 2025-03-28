@@ -10,18 +10,18 @@
   let { value = $bindable(), 
         prompts = $bindable(),
         getPromptValue = $bindable(),
+        expression = $bindable(),
         ...rest }: Props = $props();
 
   prompts = {};
   const init = (node: MathfieldElement) => {
-    onMount(()=>{
-        node.smartFence = true;
-        for (let p of node.getPrompts()){
-            console.log(p);
-        }
-    })
+    for (let p of node.getPrompts()){
+        console.log(p);
+        prompts[p] = node.getPromptValue(p)
+    }
     $effect(() => {
         if (value) node.value = value;
+        // console.log(node.expression.simplifyaf().value);
         if (prompts) {
             for (let p in prompts) {
                 if (node.getPromptValue(p) != prompts[p]){
