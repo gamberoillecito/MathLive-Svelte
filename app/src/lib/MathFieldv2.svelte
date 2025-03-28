@@ -4,7 +4,7 @@
   import { onMount} from "svelte";
   import {on} from "svelte/events"
   import "mathlive/fonts.css"
-// import {mathliveStyle} from "mathlive/fonts.css"    
+  
   type promptsDict = {[key: string]:string}
   type Props = { value?: string, prompts?:promptsDict } & Partial<MathfieldElementAttributes>;
   let { value = $bindable(), 
@@ -17,7 +17,6 @@
     onMount(()=>{
         node.smartFence = true;
         for (let p of node.getPrompts()){
-            prompts[p] = "ciao";
             console.log(p);
         }
     })
@@ -35,17 +34,11 @@
       return on(node, "input", () => {
         value = node.value;
         for (let p of node.getPrompts()) {
-            // console.log(node.getPromptValue(p))
             prompts[p] = node.getPromptValue(p);
-            // console.log(carlo);
         }
       });
     });
   };
 </script>
-<!-- <head>
-  <link rel="stylesheet" href="mathlive-fonts.css" />
-</head> -->
-<!-- <style> @import "node_modules\\mathlive\\mathlive-fonts.css" </style> -->
 
 <math-field use:init {...rest}></math-field>
