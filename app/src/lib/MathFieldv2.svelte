@@ -21,14 +21,16 @@
     }
     $effect(() => {
         if (value) node.value = value;
-        // console.log(node.expression.simplifyaf().value);
-        if (prompts) {
-            for (let p in prompts) {
-                if (node.getPromptValue(p) != prompts[p]){
-                    node.setPromptValue(p, prompts[p], {})
-                }
+        
+        for (let p in prompts) {
+            if (node.getPromptValue(p) != prompts[p]){
+                node.setPromptValue(p, prompts[p], {})
             }
-        } 
+        }
+        for (let p of node.getPrompts()) {
+            prompts[p] = node.getPromptValue(p);
+        }
+
     });
     $effect(() => {
       return on(node, "input", () => {
