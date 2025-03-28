@@ -15,7 +15,7 @@
 
 <div>
 Matrix:
-<MathFieldv2 bind:value={value}  bind:prompts={prompts} math-virtual-keyboard-policy="manual" menuItems={[]} smart-mode="true" default-mode="inline-math"></MathFieldv2>
+<MathFieldv2 bind:value={value}  bind:prompts={prompts} math-virtual-keyboard-policy="manual" menuItems={[]} smart-mode="false"></MathFieldv2>
 <p>Current LaTeX: {value}</p>
 
 <p>Prompts:  {prompts}</p>
@@ -28,7 +28,7 @@ Matrix:
 
 <button
     onclick={()=>{
-    console.log(ce.parse(prompts["answer01"]).N().print());
+    console.log(ce.parse(prompts["answer00"]).N().print());
     }
     }> eval [0][0] </button>
 

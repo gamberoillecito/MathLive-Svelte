@@ -19,6 +19,7 @@
         console.log(p);
         prompts[p] = node.getPromptValue(p)
     }
+    node.macros = {}
     $effect(() => {
         if (value) node.value = value;
         
@@ -33,7 +34,7 @@
 
     });
     $effect(() => {
-      return on(node, "input", () => {
+      return on(node, "change", () => {
         value = node.value;
         for (let p of node.getPrompts()) {
             prompts[p] = node.getPromptValue(p);
