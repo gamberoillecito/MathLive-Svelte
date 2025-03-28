@@ -1,7 +1,7 @@
 <script lang="ts">
     import MathFieldv2 from "$lib/MathFieldv2.svelte";
     import type {promptsDict} from "$lib/MathFieldv2.svelte"
-    // let value = $state('\\displaystyle\\begin{bmatrix}\\placeholder[answer00]{1} & \\placeholder[answer01]{}\\\\ 3 & 4\\end{bmatrix}');
+    import {computeEngine} from "@cortex-js/compute-engine"
     let value = $state('\\begin{bmatrix}\\placeholder[answer00]{1} & \\placeholder[answer01]{\\phantom{1}}\\\\ 3 & 4\\end{bmatrix}');
 
     let prompts: promptsDict = $state({});
