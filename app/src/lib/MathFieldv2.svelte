@@ -5,7 +5,7 @@
   import {on} from "svelte/events"
   import "mathlive/fonts.css"
   
-  type promptsDict = {[key: string]:string}
+  export type promptsDict = {[key: string]:string}
   type Props = { value?: string, prompts?:promptsDict } & Partial<MathfieldElementAttributes>;
   let { value = $bindable(), 
         prompts = $bindable(),
@@ -42,3 +42,16 @@
 </script>
 
 <math-field use:init {...rest}></math-field>
+
+<style>
+    math-field::part(virtual-keyboard-toggle) {
+        display: none;
+    }
+    math-field::part(menu-toggle) {
+        display: none;
+    }
+    math-field::part(placeholder) {
+        border: none;
+        background-color: red;
+    }
+</style>

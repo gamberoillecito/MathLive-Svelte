@@ -1,10 +1,10 @@
 <script lang="ts">
     import MathFieldv2 from "$lib/MathFieldv2.svelte";
-
+    import type {promptsDict} from "$lib/MathFieldv2.svelte"
     // let value = $state('\\displaystyle\\begin{bmatrix}\\placeholder[answer00]{1} & \\placeholder[answer01]{}\\\\ 3 & 4\\end{bmatrix}');
     let value = $state('\\begin{bmatrix}\\placeholder[answer00]{1} & \\placeholder[answer01]{\\phantom{1}}\\\\ 3 & 4\\end{bmatrix}');
 
-    let prompts = $state();
+    let prompts: promptsDict = $state({});
     // let getPromptValue2 = $state();
     let answer2 = $state();
 	$inspect(prompts);
@@ -14,7 +14,7 @@
 
 <div>
 Matrix:
-<MathFieldv2 bind:value={value} bind:prompts={prompts} smart-mode="true" default-mode="inline-math"></MathFieldv2>
+<MathFieldv2 bind:value={value} bind:prompts={prompts} math-virtual-keyboard-policy="manual" menuItems={[]} smart-mode="true" default-mode="inline-math"></MathFieldv2>
 <p>Current LaTeX: {value}</p>
 
 <p>Prompts:  {prompts}</p>
