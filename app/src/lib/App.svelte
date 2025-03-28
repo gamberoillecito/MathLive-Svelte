@@ -13,16 +13,16 @@
 
 
 <div>
-Version 2:
+Matrix:
 <MathFieldv2 bind:value={value} bind:prompts={prompts} smart-mode="true" default-mode="inline-math"></MathFieldv2>
 <p>Current LaTeX: {value}</p>
 
-<p>Prompt (answer):  {answer2}</p>
-<p>Prompts2:  {prompts}</p>
-<p>Answer:  {answer2}</p>
+<p>Prompts:  {prompts}</p>
+<p>matrix[0][0]:  {prompts["answer00"]}</p>
+<p>matrix[0][1]:  {prompts["answer01"]}</p>
 <button onclick={()=>{
     prompts["answer00"] = "x+1";
-    }}>Set value [0,0] to "x+1"</button>
+    }}>Set value [0][0] to "x+1"</button>
 </div>
 
 
