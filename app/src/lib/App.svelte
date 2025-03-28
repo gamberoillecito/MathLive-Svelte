@@ -3,14 +3,14 @@
     import MathFieldv2 from "$lib/MathFieldv2.svelte";
 
     let value1 = $state('\\begin{pmatrix}\\placeholder[answer]{} & 2\\\\ 3 & 4\\end{pmatrix}');
-    let value2 = $state('\\begin{pmatrix}\\placeholder[answer]{} & 2\\\\ 3 & 4\\end{pmatrix}');
+    let value2 = $state('\\begin{pmatrix}\\placeholder[answer00]{} & \\placeholder[answer01]{}\\\\ 3 & 4\\end{pmatrix}');
     let answer1 = $state();
 	let mathEle1 = $state();
 
     let prompts2 = $state();
     // let getPromptValue2 = $state();
-    // let answer2 = $derived(getPromptValue2('answer'));
-	// $inspect(answer2);
+    let answer2 = $state();
+	$inspect(prompts2);
     $effect(()=>{
         value1 = value1;
         answer1 = mathEle1.getPromptValue('answer');
@@ -26,14 +26,14 @@ Version 1:
 </div>
 
 
-<!-- <div>
+<div>
 Version 2:
-<MathFieldv2 bind:value={value2} bind:prompts={prompts2} bind:getPromptValue={getPromptValue2} read-only></MathFieldv2>
+<MathFieldv2 bind:value={value2} bind:carlo={prompts2}  read-only></MathFieldv2>
 <p>Current LaTeX: {value2}</p>
 
 <p>Prompt (answer):  {answer2}</p>
 <p>Prompts2:  {prompts2}</p>
 <p>Answer:  {answer2}</p>
 </div>
- -->
+
 
