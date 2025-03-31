@@ -2,9 +2,23 @@
     import MathFieldv2 from "$lib/MathFieldv2.svelte"
     import type {promptsDict} from "$lib/MathFieldv2.svelte"
     import {ComputeEngine} from  "@cortex-js/compute-engine"
-    let value = $state('\\begin{bmatrix}\\placeholder[answer00]{1} & \\placeholder[answer01]{}\\\\ 3 & 4\\end{bmatrix}');
+    let value = $state('\\placeholder[mult]{1}\\cdot\\begin{bmatrix}\\placeholder[answer00]{1} & \\placeholder[answer01]{0}\\\\ 3 & 4\\end{bmatrix}');
 
     let ce = new ComputeEngine();
+    
+    ce.latexDictionary = [
+        ...ce.latexDictionary,
+        {
+            latexTrigger: '\\placeholder',
+            // @ts-ignore
+            parse: (parser) => {
+                parser.parseOptionalGroup();
+                return parser.parseGroup() ?? ["Error", "'missing'"]
+            } ,
+        }
+    ]
+    console.log("prova parse nuovo")
+    console.log(ce.parse('\\placeholder[mult]{1}\\cdot\\begin{bmatrix}\\placeholder[answer00]{1} & \\placeholder[answer01]{0}\\\\ 3 & 4\\end{bmatrix}').N)
     let prompts: promptsDict = $state({});
     // let getPromptValue2 = $state();
     let answer2 = $state();
@@ -15,7 +29,7 @@
 
 <div>
 Matrix:
-<MathFieldv2 bind:value={value}  bind:prompts={prompts} math-virtual-keyboard-policy="manual" menuItems={[]} smart-mode="false"></MathFieldv2>
+<MathFieldv2 bind:value={value}  bind:prompts={prompts} read-only math-virtual-keyboard-policy="manual" menuItems={[]} smart-mode="fa"></MathFieldv2>
 <p>Current LaTeX: {value}</p>
 
 <p>Prompts:  {prompts}</p>
@@ -32,6 +46,11 @@ Matrix:
     }
     }> eval [0][0] </button>
 
+<button
+    onclick={()=>{
+    console.log(ce.parse(prompts["answer01"]).N().print());
+    }
+    }> eval [0][1] </button>
 
 
-<input type="text" bind:value={prompts["answer01"]}>
+<!-- <input type="text" bind:value={prompts["answer01"]}> -->
